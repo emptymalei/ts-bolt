@@ -73,8 +73,8 @@ jobs:
           path: artifacts
       - name: Check files
         run: |
-          ls -l test_results/
-          ls -l test_results/${{ matrix.os }}/
+          ls -l artifacts/
+          ls -l artifacts/${{ matrix.os }}/
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
