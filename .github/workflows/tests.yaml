@@ -46,6 +46,10 @@ jobs:
       - name: Build coverage file
         run: |
           poetry run pytest --cache-clear --cov=app --junitxml=test_results/${{ matrix.os }}/pytest_report.xml tests/ > pytest-coverage.txt
+      - name: Check files
+        run: |
+          ls -l test_results/
+          ls -l test_results/${{ matrix.os }}/
       - name: Upload Test Results
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
@@ -67,6 +71,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: artifacts
+      - name: Check files
+        run: |
+          ls -l test_results/
+          ls -l test_results/${{ matrix.os }}/
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
