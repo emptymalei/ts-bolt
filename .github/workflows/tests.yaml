@@ -38,10 +38,30 @@ jobs:
       - name: Build coverage file
         run: |
           poetry run pytest --cache-clear --cov=app --junitxml=pytest_report.xml tests/ > pytest-coverage.txt
+      - name: Upload Test Results
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v2
+        with:
+          name: Test Results
+          path: "pytest_report.xml"
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
+
+  publish-test-results:
+    name: "Publish Tests Results"
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    # the build-and-test job might be skipped, we don't need to run this job then
+    if: success() || failure()
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          path: artifacts
+
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: matrix.os == 'ubuntu-latest'
         with:
-          junit_files: "pytest_report.xml"
+          junit_files: "artifacts/**/*.xml"
