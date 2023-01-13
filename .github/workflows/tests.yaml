@@ -37,13 +37,13 @@ jobs:
         run: poetry install
       - name: Build coverage file
         run: |
-          poetry run pytest --cache-clear --cov=app --junitxml=pytest_report.xml tests/ > pytest-coverage.txt
+          poetry run pytest --cache-clear --cov=app --junitxml=test_results/${{ matrix.os }}/pytest_report.xml tests/ > pytest-coverage.txt
       - name: Upload Test Results
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v2
         with:
           name: Test Results
-          path: "pytest_report.xml"
+          path: "test_results/**/*.xml"
       - name: Comment coverage
         uses: coroo/pytest-coverage-commentator@v1.0.2
 
@@ -59,9 +59,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           path: artifacts
-
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
-        if: matrix.os == 'ubuntu-latest'
         with:
           junit_files: "artifacts/**/*.xml"
