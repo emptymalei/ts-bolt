@@ -74,7 +74,6 @@ jobs:
       - name: Check files
         run: |
           ls -l artifacts/
-          ls -l artifacts/${{ matrix.os }}/
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         with:
