@@ -45,7 +45,7 @@ jobs:
         run: poetry install
       - name: Build coverage file
         run: |
-          poetry run pytest --cache-clear --cov=app --junitxml=test_results/${{ matrix.os }}/pytest_report_${{ matrix.python-version }}.xml tests/ > pytest-coverage.txt
+          poetry run pytest --cache-clear --cov=. --junitxml=test_results/${{ matrix.os }}/pytest_report_${{ matrix.python-version }}.xml tests/ > pytest-coverage.txt
       - name: Check files
         run: |
           ls -l test_results/
