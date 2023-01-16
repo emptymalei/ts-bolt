@@ -29,7 +29,12 @@ def identity_function(x):
             {"batch_size": 10, "transform": identity_function, "collate_fn": batchify},
         ),
     ],
-    ids=["none_collate_fn", "batchify_collate_fn", "identity_collate_fn", "identity_transform"],
+    ids=[
+        "none_collate_fn",
+        "batchify_collate_fn",
+        "identity_collate_fn",
+        "identity_transform",
+    ],
 )
 def test_gluonts_dataloader_config(params, expected):
 

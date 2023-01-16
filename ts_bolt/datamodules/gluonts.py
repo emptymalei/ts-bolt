@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional
 
 import pytorch_lightning as pl
+from gluonts.dataset.common import TrainDatasets
 from gluonts.dataset.field_names import FieldName
 from gluonts.torch.batchify import batchify
 from gluonts.transform import (
@@ -57,7 +58,7 @@ class GluonTSDataset(Dataset):
 
     def __init__(
         self,
-        gluonts_dataset: NamedTuple,
+        gluonts_dataset: TrainDatasets,
         is_train: bool,
         transform: Optional[Callable] = None,
     ):
@@ -122,7 +123,7 @@ class GluonTSDataModule(pl.LightningDataModule):
 
     def __init__(
         self,
-        gluonts_dataset: NamedTuple,
+        gluonts_dataset: TrainDatasets,
         train_dataloader_config: GluonTSDataLoaderConfig,
         test_dataloader_config: GluonTSDataLoaderConfig,
     ):
@@ -134,7 +135,9 @@ class GluonTSDataModule(pl.LightningDataModule):
     def train_dataloader(self):
         return DataLoader(
             dataset=GluonTSDataset(
-                gluonts_dataset=self.gluonts_dataset, is_train=True, transform=self.train_dataloader_config.transform
+                gluonts_dataset=self.gluonts_dataset,
+                is_train=True,
+                transform=self.train_dataloader_config.transform,
             ),
             batch_size=self.train_dataloader_config.batch_size,
             collate_fn=self.train_dataloader_config.collate_fn,
