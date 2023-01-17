@@ -2,7 +2,7 @@ import pickle
 
 import pytest
 import torch
-from gluonts.dataset.common import FileDataset, load_datasets
+from gluonts.dataset.common import load_datasets
 from gluonts.torch.batchify import batchify
 
 from ts_bolt.datamodules.gluonts import (
