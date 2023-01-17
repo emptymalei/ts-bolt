@@ -51,11 +51,11 @@ jobs:
           ls -l test_results/
           ls -l test_results/${{ matrix.os }}/
       - name: Upload Test Results
-        if: matrix.os == 'ubuntu-latest'
-        uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v3
         with:
-          name: Test Results
-          path: "test_results/**/*.xml"
+          name: pytest-results-${{ matrix.python-version }}
+          path: test_results/${{ matrix.os }}/pytest_report_${{ matrix.python-version }}.xml
       # - name: Comment coverage
       #  uses: coroo/pytest-coverage-commentator@v1.0.2
 
