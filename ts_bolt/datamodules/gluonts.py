@@ -58,6 +58,17 @@ class GluonTSTransformsDefault(Transformation):
 class GluonTSDataset(Dataset):
     """A map stype dataset built from a gluonts dataset
 
+    ```python
+    from gluonts.dataset.repository.datasets import get_dataset
+
+    gluonts_dataset = get_dataset("electricity")
+
+    dataset = GluonTSDataset(
+        gluonts_dataset = gluonts_dataset,
+        is_train = True
+    )
+    ```
+
     :param gluonts_dataset: gluonts dataset, e.g., TrainDatasets
     :param is_train: whether the dataset is for training
     :param transform: transformations on dataset, e.g., gluonts.transform.InstanceSplitter
@@ -106,6 +117,13 @@ class GluonTSDataset(Dataset):
 class GluonTSDataLoaderConfig:
     """Configs for dataloaders from a gluonts dataset
 
+
+    ```python
+    dl_config = GluonTSDataLoaderConfig(
+        batch_size=2,
+    )
+    ```
+
     :param batch_size: batch size for the PyTorch DataLoader
     :param transform: transforms of the PyTorch DataLoader, e.g., GluonTSTransformsDefault.
     :param collate_fn: collate_fn of the PyTorch DataLoader, e.g., gluonts.torch.batchify.batchify
@@ -122,6 +140,22 @@ class GluonTSDataLoaderConfig:
 
 class GluonTSDataModule(pl.LightningDataModule):
     """LightningDataModule from a gluonts dataset.
+
+
+    ```python
+    from gluonts.dataset.repository.datasets import get_dataset
+
+    gluonts_dataset = get_dataset("electricity")
+
+    train_dl_config = GluonTSDataLoaderConfig(batch_size=2)
+    test_dl_config = GluonTSDataLoaderConfig(batch_size=10)
+
+    dl = GluonTSDataModule(
+        gluonts_dataset = gluonts_dataset,
+        train_dataloader_config = train_dl_config,
+        test_dataloader_config = test_dl_config,
+    )
+    ```
 
     :param gluonts_dataset: gluonts TrainDatasets
     :param train_dataloader_config: config for train DataLoader
