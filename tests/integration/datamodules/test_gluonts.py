@@ -2,7 +2,7 @@ import pickle
 
 import pytest
 import torch
-from gluonts.dataset.repository.datasets import get_dataset
+from gluonts.dataset.common import FileDataset, load_datasets
 from gluonts.torch.batchify import batchify
 
 from ts_bolt.datamodules.gluonts import (
@@ -13,21 +13,11 @@ from ts_bolt.datamodules.gluonts import (
 
 
 @pytest.fixture
-def gluonts_dataset(datamodules_artefacts_dir):
+def gluonts_dataset(integration_test_dir):
 
-    is_regenerate_artefact = False
+    path = integration_test_dir / "datamodules" / "dataset" / "constant"
 
-    dataset_path = datamodules_artefacts_dir / "gluonts_constant_dataset.pkl"
-
-    if is_regenerate_artefact:
-        ds = get_dataset("constant")
-        with open(dataset_path, "wb+") as fp:
-            pickle.dump(ds, fp)
-
-    with open(dataset_path, "rb") as fp:
-        ds = pickle.load(fp)
-
-    return ds
+    return load_datasets(metadata=path, train=path / "train", test=path / "test")
 
 
 @pytest.fixture
