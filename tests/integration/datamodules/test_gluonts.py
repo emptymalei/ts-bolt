@@ -13,8 +13,21 @@ from ts_bolt.datamodules.gluonts import (
 
 
 @pytest.fixture
-def gluonts_dataset():
-    return get_dataset("constant")
+def gluonts_dataset(datamodules_artefacts_dir):
+
+    is_regenerate_artefact = False
+
+    dataset_path = datamodules_artefacts_dir / "gluonts_constant_dataset.pkl"
+
+    if is_regenerate_artefact:
+        ds = get_dataset("constant")
+        with open(dataset_path, "wb+") as fp:
+            pickle.dump(ds, fp)
+
+    with open(dataset_path, "rb") as fp:
+        ds = pickle.load(fp)
+
+    return ds
 
 
 @pytest.fixture
