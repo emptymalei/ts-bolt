@@ -22,14 +22,18 @@ def gluonts_dataset(integration_test_dir):
 
 @pytest.fixture
 def gluonts_dataloader_config():
-    return GluonTSDataLoaderConfig(**{"batch_size": 2, "transform": None, "collate_fn": batchify})
+    return GluonTSDataLoaderConfig(
+        **{"batch_size": 2, "transform": None, "collate_fn": batchify}
+    )
 
 
 def test_gluonts_dataset(gluonts_dataset, datamodules_artefacts_dir):
 
     is_regenerate_artefact = False
 
-    expected_dataset_path = datamodules_artefacts_dir / "gluonts_dataset_to_torch_dataset_expected.pkl"
+    expected_dataset_path = (
+        datamodules_artefacts_dir / "gluonts_dataset_to_torch_dataset_expected.pkl"
+    )
 
     g_ds_train = GluonTSDataset(gluonts_dataset=gluonts_dataset, is_train=True)
 
@@ -43,14 +47,20 @@ def test_gluonts_dataset(gluonts_dataset, datamodules_artefacts_dir):
     assert len(g_ds_train) == len(g_ds_train_expected)
 
 
-def test_gluonts_datamodule(gluonts_dataset, gluonts_dataloader_config, datamodules_artefacts_dir):
+def test_gluonts_datamodule(
+    gluonts_dataset, gluonts_dataloader_config, datamodules_artefacts_dir
+):
 
     is_regenerate_artefact = False
 
     expected_train_dataloader_path = (
-        datamodules_artefacts_dir / "gluonts_dataset_to_torch_train_dataloader_expected.pkl"
+        datamodules_artefacts_dir
+        / "gluonts_dataset_to_torch_train_dataloader_expected.pkl"
     )
-    expected_test_dataloader_path = datamodules_artefacts_dir / "gluonts_dataset_to_torch_test_dataloader_expected.pkl"
+    expected_test_dataloader_path = (
+        datamodules_artefacts_dir
+        / "gluonts_dataset_to_torch_test_dataloader_expected.pkl"
+    )
 
     dm = GluonTSDataModule(
         gluonts_dataset=gluonts_dataset,

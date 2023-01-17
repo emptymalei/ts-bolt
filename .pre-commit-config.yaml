@@ -20,7 +20,7 @@ repos:
     - id: black
       language: python
       args:
-        - "--line-length=120"
+        - "--line-length=88"
   - repo: https://github.com/pycqa/isort
     rev: 5.10.1
     hooks:
