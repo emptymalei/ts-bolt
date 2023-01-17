@@ -17,6 +17,13 @@ from torch.utils.data import DataLoader, Dataset
 class GluonTSTransformsDefault(Transformation):
     """Default transforms of a gluonts dataset
 
+    ```python
+    gluonts_transform = GluonTSTransformsDefault(
+        context_length=10,
+        prediction_length=5,
+    )
+    ```
+
     :param context_length: the length of history input
     :param prediction_length: the length to be forecasted
     """
