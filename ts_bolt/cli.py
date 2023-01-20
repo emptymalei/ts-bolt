@@ -4,7 +4,24 @@ import click
 import requests
 from loguru import logger
 
+from ts_bolt.datasets.collections import DownloaderDataset, RawFileDataset
 from ts_bolt.datasets.collections import collections as dataset_collections
+
+
+def download_binary_request(dataset: RawFileDataset, local_file: Path):
+    """Download remote content in a binary format
+
+    :param dataset: a RawFileDataset definition
+    :param local_file: where to write the content to
+    """
+
+    r = requests.get(dataset.remote)
+    if r.status_code != 200:
+        logger.error(f"Can not download {dataset}")
+    else:
+        with open(local_file, "wb") as f:
+            for chunk in r.iter_content(chunk_size=128):
+                f.write(chunk)
 
 
 @click.group(invoke_without_command=True)
@@ -54,15 +71,14 @@ def download(name, target):
     local_file = target / dataset.file_name
 
     if local_file.exists():
-        logger.warning(f"file already exists in {local_file}")
+        logger.warning(
+            f"file already exists in {local_file}; please remove if redownload is needed"
+        )
     else:
-        r = requests.get(dataset.remote)
-        if r.status_code != 200:
-            logger.error(f"Can not download {dataset}")
-        else:
-            with open(local_file, "wb") as f:
-                for chunk in r.iter_content(chunk_size=128):
-                    f.write(chunk)
+        if isinstance(dataset, RawFileDataset):
+            download_binary_request(dataset, local_file)
+        elif isinstance(dataset, DownloaderDataset):
+            dataset.downloader(local_file)
 
 
 if __name__ == "__main__":
