@@ -31,7 +31,7 @@ mkdocs-autorefs = "^0.4.1"
 
 
 [tool.poetry.scripts]
-download = "ts_bolt.cli:download"
+bolt = "ts_bolt.cli:bolt"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

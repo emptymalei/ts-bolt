@@ -7,7 +7,32 @@ from loguru import logger
 from ts_bolt.datasets.collections import collections as dataset_collections
 
 
-@click.command()
+@click.group(invoke_without_command=True)
+@click.pass_context
+def bolt(ctx):
+    if ctx.invoked_subcommand is None:
+        click.echo("Use bolt --help for help.")
+    else:
+        pass
+
+
+@bolt.command()
+@click.option(
+    "--name",
+    default=None,
+    type=click.Choice(dataset_collections.keys()),
+    help="name of dataset to be check",
+    required=False,
+)
+def list(name):
+
+    if name is None:
+        click.echo_via_pager("\n".join(f"{d}" for d in dataset_collections))
+    else:
+        click.secho(f"{name} definition: {dataset_collections[name]}")
+
+
+@bolt.command()
 @click.option(
     "--name",
     type=click.Choice(dataset_collections.keys()),
@@ -41,4 +66,4 @@ def download(name, target):
 
 
 if __name__ == "__main__":
-    download()
+    pass
