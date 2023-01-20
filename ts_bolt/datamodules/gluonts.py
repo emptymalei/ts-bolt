@@ -121,6 +121,8 @@ class GluonTSDataLoaderConfig:
     ```python
     dl_config = GluonTSDataLoaderConfig(
         batch_size=2,
+        transform=None,
+        collate_fn=None,
     )
     ```
 
@@ -147,10 +149,18 @@ class GluonTSDataModule(pl.LightningDataModule):
 
     gluonts_dataset = get_dataset("electricity")
 
-    train_dl_config = GluonTSDataLoaderConfig(batch_size=2)
-    test_dl_config = GluonTSDataLoaderConfig(batch_size=10)
+    train_dl_config = GluonTSDataLoaderConfig(
+        batch_size=2,
+        transform=None,
+        collate_fn=None,
+    )
+    test_dl_config = GluonTSDataLoaderConfig(
+        batch_size=10,
+        transform=None,
+        collate_fn=None,
+    )
 
-    dl = GluonTSDataModule(
+    dm = GluonTSDataModule(
         gluonts_dataset = gluonts_dataset,
         train_dataloader_config = train_dl_config,
         test_dataloader_config = test_dl_config,
