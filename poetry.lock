@@ -227,6 +227,24 @@ files = [
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
+name = "cloudpathlib"
+version = "0.12.1"
+description = "pathlib-style classes for cloud storage services"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "cloudpathlib-0.12.1-py3-none-any.whl", hash = "sha256:5b75a53b4a0ee25d5e740ace8769aa67ab481555f4a9f7590cdfccc7ec791636"},
+    {file = "cloudpathlib-0.12.1.tar.gz", hash = "sha256:31176c459235794816ac9276843b991667e912cb9fef23d9ce3b7c8f455a2245"},
+]
+
+[package.extras]
+all = ["azure-storage-blob (>=12)", "boto3", "google-cloud-storage"]
+azure = ["azure-storage-blob (>=12)"]
+gs = ["google-cloud-storage"]
+s3 = ["boto3"]
+
+[[package]]
 name = "colorama"
 version = "0.4.6"
 description = "Cross-platform colored terminal text."
@@ -1442,6 +1460,23 @@ files = [
 ]
 
 [[package]]
+name = "strenum"
+version = "0.4.9"
+description = "An Enum that inherits from str."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "StrEnum-0.4.9-py3-none-any.whl", hash = "sha256:c3df653030837b8077b2eb929738283481f01b07c7ef73ab4db368449830cc46"},
+    {file = "StrEnum-0.4.9.tar.gz", hash = "sha256:1b15ccff9eb0e22e77b8f874366ea752754280adc9144e6e388705d14cc350e7"},
+]
+
+[package.extras]
+docs = ["myst-parser[linkify]", "sphinx", "sphinx-rtd-theme"]
+release = ["twine"]
+test = ["pylint", "pytest", "pytest-black", "pytest-cov", "pytest-pylint"]
+
+[[package]]
 name = "tensorboardx"
 version = "2.5.1"
 description = "TensorBoardX lets you watch Tensors Flow without Tensorflow"
@@ -1778,4 +1813,4 @@ testing = ["flake8 (<5)", "func-timeout", "jaraco.functools", "jaraco.itertools"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "045c73a7f23f640ced6255a752476b55e3b789dbc42f7bebc7d18038f25e9379"
+content-hash = "8c60ce5c305f4ba4d5ca9e8f938e298e3be059695156ab07d567475d554137aa"
