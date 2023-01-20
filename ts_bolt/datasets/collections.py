@@ -12,6 +12,12 @@ class NamedDatasets(StrEnum):
     lai_solar_al = "lai_solar_al"
     lai_traffic = "lai_traffic"
     ecb_exchange_rate = "ecb_exchange_rate"
+    mbohlkeschneider_electricity_nips = "mbohlkeschneider_electricity_nips"
+    mbohlkeschneider_exchange_rate_nips = "mbohlkeschneider_exchange_rate_nips"
+    mbohlkeschneider_solar_nips = "mbohlkeschneider_solar_nips"
+    mbohlkeschneider_wiki_rolling_nips = "mbohlkeschneider_wiki_rolling_nips"
+    mbohlkeschneider_traffic_nips = "mbohlkeschneider_traffic_nips"
+    mbohlkeschneider_taxi_30min = "mbohlkeschneider_taxi_30min"
 
 
 class RawFileDataset(BaseModel):
@@ -58,5 +64,41 @@ collections = {
         downloader=download_ecb_exchange_rate,
         documentation="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html",
         file_name=f"{NamedDatasets.ecb_exchange_rate}.csv",
+    ),
+    NamedDatasets.mbohlkeschneider_electricity_nips: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_electricity_nips,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/electricity_nips.tar.gz",
+        documentation="https://arxiv.org/abs/2101.12072",
+        file_name=f"{NamedDatasets.mbohlkeschneider_electricity_nips}.tar.gz",
+    ),
+    NamedDatasets.mbohlkeschneider_exchange_rate_nips: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_exchange_rate_nips,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/exchange_rate_nips.tar.gz",
+        documentation="https://arxiv.org/abs/2101.12072",
+        file_name=f"{NamedDatasets.mbohlkeschneider_exchange_rate_nips}.tar.gz",
+    ),
+    NamedDatasets.mbohlkeschneider_solar_nips: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_solar_nips,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/solar_nips.tar.gz",
+        documentation="https://arxiv.org/abs/2101.12072",
+        file_name=f"{NamedDatasets.mbohlkeschneider_solar_nips}.tar.gz",
+    ),
+    NamedDatasets.mbohlkeschneider_wiki_rolling_nips: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_wiki_rolling_nips,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/wiki-rolling_nips.tar.gz",
+        documentation="https://github.com/mbohlkeschneider/gluon-ts/tree/mv_release/datasets",
+        file_name=f"{NamedDatasets.mbohlkeschneider_wiki_rolling_nips}.tar.gz",
+    ),
+    NamedDatasets.mbohlkeschneider_traffic_nips: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_traffic_nips,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/traffic_nips.tar.gz",
+        documentation="https://github.com/mbohlkeschneider/gluon-ts/tree/mv_release/datasets",
+        file_name=f"{NamedDatasets.mbohlkeschneider_traffic_nips}.tar.gz",
+    ),
+    NamedDatasets.mbohlkeschneider_taxi_30min: RawFileDataset(
+        name=NamedDatasets.mbohlkeschneider_taxi_30min,
+        remote="https://github.com/mbohlkeschneider/gluon-ts/raw/mv_release/datasets/taxi_30min.tar.gz",
+        documentation="https://github.com/mbohlkeschneider/gluon-ts/tree/mv_release/datasets",
+        file_name=f"{NamedDatasets.mbohlkeschneider_taxi_30min}.tar.gz",
     ),
 }
