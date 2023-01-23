@@ -13,7 +13,7 @@ from ts_bolt.datamodules.gluonts import (
 
 
 @pytest.fixture
-def gluonts_dataset(integration_test_dir):
+def gluonts_datasets(integration_test_dir):
 
     path = integration_test_dir / "datamodules" / "dataset" / "constant"
 
@@ -27,7 +27,7 @@ def gluonts_dataloader_config():
     )
 
 
-def test_gluonts_dataset(gluonts_dataset, datamodules_artefacts_dir):
+def test_gluonts_datasets(gluonts_datasets, datamodules_artefacts_dir):
 
     is_regenerate_artefact = False
 
@@ -35,7 +35,7 @@ def test_gluonts_dataset(gluonts_dataset, datamodules_artefacts_dir):
         datamodules_artefacts_dir / "gluonts_dataset_to_torch_dataset_expected.pkl"
     )
 
-    g_ds_train = GluonTSDataset(gluonts_dataset=gluonts_dataset, is_train=True)
+    g_ds_train = GluonTSDataset(dataset=gluonts_datasets.train, is_train=True)
 
     if is_regenerate_artefact:
         with open(expected_dataset_path, "wb+") as fp:
@@ -44,11 +44,15 @@ def test_gluonts_dataset(gluonts_dataset, datamodules_artefacts_dir):
     with open(expected_dataset_path, "rb") as fp:
         g_ds_train_expected = pickle.load(fp)
 
-    assert len(g_ds_train) == len(g_ds_train_expected)
+    assert len(list(g_ds_train)) == len(g_ds_train_expected)
+
+    for i in range(len(g_ds_train_expected)):
+        for k in g_ds_train_expected[i]:
+            g_ds_train_expected[i][k] == list(g_ds_train)[i][k]
 
 
 def test_gluonts_datamodule(
-    gluonts_dataset, gluonts_dataloader_config, datamodules_artefacts_dir
+    gluonts_datasets, gluonts_dataloader_config, datamodules_artefacts_dir
 ):
 
     is_regenerate_artefact = False
@@ -63,7 +67,8 @@ def test_gluonts_datamodule(
     )
 
     dm = GluonTSDataModule(
-        gluonts_dataset=gluonts_dataset,
+        train_dataset=gluonts_datasets.train,
+        test_dataset=gluonts_datasets.test,
         train_dataloader_config=gluonts_dataloader_config,
         test_dataloader_config=gluonts_dataloader_config,
     )
@@ -81,8 +86,8 @@ def test_gluonts_datamodule(
     with open(expected_test_dataloader_path, "rb") as fp:
         dm_test_dataloader_expected = pickle.load(fp)
 
-    assert len(dm.train_dataloader()) == len(dm_train_dataloader_expected)
-    assert len(dm.test_dataloader()) == len(dm_test_dataloader_expected)
+    assert len(list(dm.train_dataloader())) == len(list(dm_train_dataloader_expected))
+    assert len(list(dm.test_dataloader())) == len(list(dm_test_dataloader_expected))
 
     dm_train_dataloader_values = list(dm.train_dataloader())
 
