@@ -736,7 +736,18 @@
 
         <details class="quote">
           <summary>Source code in <code>ts_bolt/datamodules/gluonts.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">116</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
 <span class="normal">117</span>
 <span class="normal">118</span>
 <span class="normal">119</span>
@@ -749,18 +760,7 @@
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span>
-<span class="normal">130</span>
-<span class="normal">131</span>
-<span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
-<span class="normal">135</span>
-<span class="normal">136</span>
-<span class="normal">137</span>
-<span class="normal">138</span>
-<span class="normal">139</span>
-<span class="normal">140</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">GluonTSDataLoaderConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configs for dataloaders from a gluonts dataset</span>
 
@@ -827,7 +827,7 @@
       <p>LightningDataModule from a gluonts dataset.</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gluonts.dataset.repository.datasets</span> <span class="kn">import</span> <span class="n">get_dataset</span>
 
-<span class="n">gluonts_dataset</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;electricity&quot;</span><span class="p">)</span>
+<span class="n">gluonts_datasets</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;electricity&quot;</span><span class="p">)</span>
 
 <span class="n">train_dl_config</span> <span class="o">=</span> <span class="n">GluonTSDataLoaderConfig</span><span class="p">(</span>
     <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
@@ -841,7 +841,8 @@
 <span class="p">)</span>
 
 <span class="n">dm</span> <span class="o">=</span> <span class="n">GluonTSDataModule</span><span class="p">(</span>
-    <span class="n">gluonts_dataset</span> <span class="o">=</span> <span class="n">gluonts_dataset</span><span class="p">,</span>
+    <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">gluonts_datasets</span><span class="o">.</span><span class="n">train</span><span class="p">,</span>
+    <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">gluonts_datasets</span><span class="o">.</span><span class="n">test</span><span class="p">,</span>
     <span class="n">train_dataloader_config</span> <span class="o">=</span> <span class="n">train_dl_config</span><span class="p">,</span>
     <span class="n">test_dataloader_config</span> <span class="o">=</span> <span class="n">test_dl_config</span><span class="p">,</span>
 <span class="p">)</span>
@@ -859,11 +860,11 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>gluonts_dataset</code></td>
+          <td><code>train_dataset</code></td>
           <td>
-                <code><span title="gluonts.dataset.common.TrainDatasets">TrainDatasets</span></code>
+                <code><span title="torch.utils.data.Dataset">Dataset</span></code>
           </td>
-          <td><p>gluonts TrainDatasets</p></td>
+          <td><p>gluonts Dataset for training</p></td>
           <td>
               <em>required</em>
           </td>
@@ -894,7 +895,18 @@
 
         <details class="quote">
           <summary>Source code in <code>ts_bolt/datamodules/gluonts.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">143</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
@@ -950,21 +962,14 @@
 <span class="normal">196</span>
 <span class="normal">197</span>
 <span class="normal">198</span>
-<span class="normal">199</span>
-<span class="normal">200</span>
-<span class="normal">201</span>
-<span class="normal">202</span>
-<span class="normal">203</span>
-<span class="normal">204</span>
-<span class="normal">205</span>
-<span class="normal">206</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
+<span class="normal">199</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;LightningDataModule from a gluonts dataset.</span>
 
 
 <span class="sd">    ```python</span>
 <span class="sd">    from gluonts.dataset.repository.datasets import get_dataset</span>
 
-<span class="sd">    gluonts_dataset = get_dataset(&quot;electricity&quot;)</span>
+<span class="sd">    gluonts_datasets = get_dataset(&quot;electricity&quot;)</span>
 
 <span class="sd">    train_dl_config = GluonTSDataLoaderConfig(</span>
 <span class="sd">        batch_size=2,</span>
@@ -978,32 +983,36 @@
 <span class="sd">    )</span>
 
 <span class="sd">    dm = GluonTSDataModule(</span>
-<span class="sd">        gluonts_dataset = gluonts_dataset,</span>
+<span class="sd">        train_dataset = gluonts_datasets.train,</span>
+<span class="sd">        test_dataset = gluonts_datasets.test,</span>
 <span class="sd">        train_dataloader_config = train_dl_config,</span>
 <span class="sd">        test_dataloader_config = test_dl_config,</span>
 <span class="sd">    )</span>
 <span class="sd">    ```</span>
 
-<span class="sd">    :param gluonts_dataset: gluonts TrainDatasets</span>
+<span class="sd">    :param train_dataset: gluonts Dataset for training</span>
+<span class="sd">    :param train_dataset: gluonts Dataset for testing</span>
 <span class="sd">    :param train_dataloader_config: config for train DataLoader</span>
 <span class="sd">    :param test_dataloader_config: config for the test DataLoader</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">gluonts_dataset</span><span class="p">:</span> <span class="n">TrainDatasets</span><span class="p">,</span>
+        <span class="n">train_dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span>
+        <span class="n">test_dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span>
         <span class="n">train_dataloader_config</span><span class="p">:</span> <span class="n">GluonTSDataLoaderConfig</span><span class="p">,</span>
         <span class="n">test_dataloader_config</span><span class="p">:</span> <span class="n">GluonTSDataLoaderConfig</span><span class="p">,</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">gluonts_dataset</span> <span class="o">=</span> <span class="n">gluonts_dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">train_dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span> <span class="o">=</span> <span class="n">test_dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">train_dataloader_config</span> <span class="o">=</span> <span class="n">train_dataloader_config</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_dataloader_config</span> <span class="o">=</span> <span class="n">test_dataloader_config</span>
 
     <span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">DataLoader</span><span class="p">(</span>
             <span class="n">dataset</span><span class="o">=</span><span class="n">GluonTSDataset</span><span class="p">(</span>
-                <span class="n">gluonts_dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gluonts_dataset</span><span class="p">,</span>
+                <span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dataset</span><span class="p">,</span>
                 <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
                 <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dataloader_config</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
             <span class="p">),</span>
@@ -1014,8 +1023,8 @@
     <span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">DataLoader</span><span class="p">(</span>
             <span class="n">dataset</span><span class="o">=</span><span class="n">GluonTSDataset</span><span class="p">(</span>
-                <span class="n">gluonts_dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">gluonts_dataset</span><span class="p">,</span>
-                <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="p">,</span>
+                <span class="n">is_train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                 <span class="n">transform</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataloader_config</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataloader_config</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span>
@@ -1057,16 +1066,16 @@
 
   <div class="doc doc-contents ">
       <p class="doc doc-class-bases">
-        Bases: <code><span title="torch.utils.data.Dataset">Dataset</span></code></p>
+        Bases: <code><span title="torch.utils.data.IterableDataset">IterableDataset</span></code></p>
 
   
-      <p>A map stype dataset built from a gluonts dataset</p>
+      <p>An iter style dataset built from a gluonts dataset</p>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">gluonts.dataset.repository.datasets</span> <span class="kn">import</span> <span class="n">get_dataset</span>
 
-<span class="n">gluonts_dataset</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;electricity&quot;</span><span class="p">)</span>
+<span class="n">gluonts_datasets</span> <span class="o">=</span> <span class="n">get_dataset</span><span class="p">(</span><span class="s2">&quot;electricity&quot;</span><span class="p">)</span>
 
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">GluonTSDataset</span><span class="p">(</span>
-    <span class="n">gluonts_dataset</span> <span class="o">=</span> <span class="n">gluonts_dataset</span><span class="p">,</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">gluonts_datasets</span><span class="o">.</span><span class="n">train</span><span class="p">,</span>
     <span class="n">is_train</span> <span class="o">=</span> <span class="kc">True</span>
 <span class="p">)</span>
 </code></pre></div>
@@ -1083,9 +1092,9 @@
     </thead>
     <tbody>
         <tr>
-          <td><code>gluonts_dataset</code></td>
+          <td><code>dataset</code></td>
           <td>
-                <code><span title="gluonts.dataset.common.TrainDatasets">TrainDatasets</span></code>
+                <code><span title="torch.utils.data.Dataset">Dataset</span></code>
           </td>
           <td><p>gluonts dataset, e.g., TrainDatasets</p></td>
           <td>
@@ -1162,73 +1171,51 @@
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
-<span class="normal">108</span>
-<span class="normal">109</span>
-<span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;A map stype dataset built from a gluonts dataset</span>
+<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataset</span><span class="p">(</span><span class="n">IterableDataset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;An iter style dataset built from a gluonts dataset</span>
 
 <span class="sd">    ```python</span>
 <span class="sd">    from gluonts.dataset.repository.datasets import get_dataset</span>
 
-<span class="sd">    gluonts_dataset = get_dataset(&quot;electricity&quot;)</span>
+<span class="sd">    gluonts_datasets = get_dataset(&quot;electricity&quot;)</span>
 
 <span class="sd">    dataset = GluonTSDataset(</span>
-<span class="sd">        gluonts_dataset = gluonts_dataset,</span>
+<span class="sd">        dataset = gluonts_datasets.train,</span>
 <span class="sd">        is_train = True</span>
 <span class="sd">    )</span>
 <span class="sd">    ```</span>
 
-<span class="sd">    :param gluonts_dataset: gluonts dataset, e.g., TrainDatasets</span>
+<span class="sd">    :param dataset: gluonts dataset, e.g., TrainDatasets</span>
 <span class="sd">    :param is_train: whether the dataset is for training</span>
 <span class="sd">    :param transform: transformations on dataset, e.g., gluonts.transform.InstanceSplitter</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">gluonts_dataset</span><span class="p">:</span> <span class="n">TrainDatasets</span><span class="p">,</span>
+        <span class="n">dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span>
         <span class="n">is_train</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">transform</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">metadata</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">gluonts_dataset</span><span class="o">.</span><span class="n">metadata</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">data_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">gluonts_dataset</span><span class="p">)</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">metadata</span> <span class="o">=</span> <span class="n">metadata</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_train</span> <span class="o">=</span> <span class="n">is_train</span>
-
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_train</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">gluonts_dataset</span><span class="o">.</span><span class="n">train</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">gluonts_dataset</span><span class="o">.</span><span class="n">test</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">transformed_dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transform_dataset</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transformed_dataset</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
-
-        <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformed_dataset</span>
-
-        <span class="k">return</span> <span class="n">dataset</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span>
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">transformed_dataset</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">d</span>
 
     <span class="k">def</span> <span class="nf">_transform_dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">:</span>
-            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">is_train</span><span class="p">)</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">is_train</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span>
+            <span class="n">dataset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span>
 
-        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">dataset</span>
 </code></pre></div></td></tr></table></div>
         </details>
 

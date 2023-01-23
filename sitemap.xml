@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/changelog/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datamodules/gluonts/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/tutorials/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/tutorials/command-line/</loc>
-         <lastmod>2023-01-20</lastmod>
+         <lastmod>2023-01-23</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
