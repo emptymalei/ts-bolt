@@ -30,7 +30,7 @@ class DataFrameDataset(Dataset):
                 self.context_length + idx : self.context_length + self.horzion + idx
             ].values,
         )
-        yield x, y
+        return x, y
 
     def _validate_dataframe(self):
         """Validate the input dataframe.
@@ -59,6 +59,8 @@ class DataFrameDataset(Dataset):
             logger.warning(f"Dataframe index is not sorted")
 
     def __getitem__(self, idx):
+        if idx >= self.length:
+            raise IndexError("End of dataset")
         return self.moving_slicing(idx)
 
     def __len__(self):
