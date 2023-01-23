@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from typing import Any, Callable, Dict, Iterable, List, NamedTuple, Optional
 
 import pytorch_lightning as pl
-from gluonts.dataset.common import TrainDatasets
+from gluonts.dataset import Dataset
 from gluonts.dataset.field_names import FieldName
 from gluonts.torch.batchify import batchify
 from gluonts.transform import (
@@ -11,7 +11,7 @@ from gluonts.transform import (
     InstanceSplitter,
     Transformation,
 )
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset, IterableDataset
 
 
 class GluonTSTransformsDefault(Transformation):
@@ -55,62 +55,51 @@ class GluonTSTransformsDefault(Transformation):
         return mask_unobserved + training_splitter
 
 
-class GluonTSDataset(Dataset):
-    """A map stype dataset built from a gluonts dataset
+class GluonTSDataset(IterableDataset):
+    """An iter style dataset built from a gluonts dataset
 
     ```python
     from gluonts.dataset.repository.datasets import get_dataset
 
-    gluonts_dataset = get_dataset("electricity")
+    gluonts_datasets = get_dataset("electricity")
 
     dataset = GluonTSDataset(
-        gluonts_dataset = gluonts_dataset,
+        dataset = gluonts_datasets.train,
         is_train = True
     )
     ```
 
-    :param gluonts_dataset: gluonts dataset, e.g., TrainDatasets
+    :param dataset: gluonts dataset, e.g., TrainDatasets
     :param is_train: whether the dataset is for training
     :param transform: transformations on dataset, e.g., gluonts.transform.InstanceSplitter
     """
 
     def __init__(
         self,
-        gluonts_dataset: TrainDatasets,
+        dataset: Dataset,
         is_train: bool,
         transform: Optional[Callable] = None,
+        metadata: Optional[Dict[Any, Any]] = None,
     ):
-        self.metadata = gluonts_dataset.metadata
-        self.data_length = len(gluonts_dataset)
-
+        self.metadata = metadata
+        self.dataset = dataset
         self.is_train = is_train
-
-        if self.is_train:
-            self.data = gluonts_dataset.train
-        else:
-            self.data = gluonts_dataset.test
 
         self.transform = transform
         self.transformed_dataset = self._transform_dataset()
-        self.length = len(self.transformed_dataset)
 
-    def __getitem__(self, idx: int) -> Dict[str, Any]:
-
-        dataset = self.transformed_dataset
-
-        return dataset[idx]
-
-    def __len__(self) -> int:
-        return self.length
+    def __iter__(self):
+        for d in self.transformed_dataset:
+            yield d
 
     def _transform_dataset(self) -> List[Dict[str, Any]]:
 
         if self.transform:
-            dataset = self.transform(self.data, is_train=self.is_train)
+            dataset = self.transform(self.dataset, is_train=self.is_train)
         else:
-            dataset = self.data
+            dataset = self.dataset
 
-        return list(dataset)
+        return dataset
 
 
 @dataclass
@@ -147,7 +136,7 @@ class GluonTSDataModule(pl.LightningDataModule):
     ```python
     from gluonts.dataset.repository.datasets import get_dataset
 
-    gluonts_dataset = get_dataset("electricity")
+    gluonts_datasets = get_dataset("electricity")
 
     train_dl_config = GluonTSDataLoaderConfig(
         batch_size=2,
@@ -161,32 +150,36 @@ class GluonTSDataModule(pl.LightningDataModule):
     )
 
     dm = GluonTSDataModule(
-        gluonts_dataset = gluonts_dataset,
+        train_dataset = gluonts_datasets.train,
+        test_dataset = gluonts_datasets.test,
         train_dataloader_config = train_dl_config,
         test_dataloader_config = test_dl_config,
     )
     ```
 
-    :param gluonts_dataset: gluonts TrainDatasets
+    :param train_dataset: gluonts Dataset for training
+    :param train_dataset: gluonts Dataset for testing
     :param train_dataloader_config: config for train DataLoader
     :param test_dataloader_config: config for the test DataLoader
     """
 
     def __init__(
         self,
-        gluonts_dataset: TrainDatasets,
+        train_dataset: Dataset,
+        test_dataset: Dataset,
         train_dataloader_config: GluonTSDataLoaderConfig,
         test_dataloader_config: GluonTSDataLoaderConfig,
     ):
         super().__init__()
-        self.gluonts_dataset = gluonts_dataset
+        self.train_dataset = train_dataset
+        self.test_dataset = test_dataset
         self.train_dataloader_config = train_dataloader_config
         self.test_dataloader_config = test_dataloader_config
 
     def train_dataloader(self):
         return DataLoader(
             dataset=GluonTSDataset(
-                gluonts_dataset=self.gluonts_dataset,
+                dataset=self.train_dataset,
                 is_train=True,
                 transform=self.train_dataloader_config.transform,
             ),
@@ -197,8 +190,8 @@ class GluonTSDataModule(pl.LightningDataModule):
     def test_dataloader(self):
         return DataLoader(
             dataset=GluonTSDataset(
-                gluonts_dataset=self.gluonts_dataset,
-                is_train=True,
+                dataset=self.test_dataset,
+                is_train=False,
                 transform=self.test_dataloader_config.transform,
             ),
             batch_size=self.test_dataloader_config.batch_size,
