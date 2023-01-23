@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ts_bolt"
-version = "0.0.2"
+version = "0.0.3"
 description = "The Lightning Bolt for Time Series Data and Models"
 authors = ["LM <hi@leima.is>"]
 license = "MIT"
