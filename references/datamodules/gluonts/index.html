@@ -736,9 +736,7 @@
 
         <details class="quote">
           <summary>Source code in <code>ts_bolt/datamodules/gluonts.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">107</span>
 <span class="normal">108</span>
 <span class="normal">109</span>
 <span class="normal">110</span>
@@ -760,7 +758,9 @@
 <span class="normal">126</span>
 <span class="normal">127</span>
 <span class="normal">128</span>
-<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">GluonTSDataLoaderConfig</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Configs for dataloaders from a gluonts dataset</span>
 
@@ -895,9 +895,7 @@
 
         <details class="quote">
           <summary>Source code in <code>ts_bolt/datamodules/gluonts.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">132</span>
-<span class="normal">133</span>
-<span class="normal">134</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
@@ -962,7 +960,9 @@
 <span class="normal">196</span>
 <span class="normal">197</span>
 <span class="normal">198</span>
-<span class="normal">199</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;LightningDataModule from a gluonts dataset.</span>
 
 
@@ -1127,9 +1127,7 @@
 
         <details class="quote">
           <summary>Source code in <code>ts_bolt/datamodules/gluonts.py</code></summary>
-          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
+          <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 60</span>
 <span class="normal"> 61</span>
 <span class="normal"> 62</span>
 <span class="normal"> 63</span>
@@ -1171,7 +1169,9 @@
 <span class="normal"> 99</span>
 <span class="normal">100</span>
 <span class="normal">101</span>
-<span class="normal">102</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataset</span><span class="p">(</span><span class="n">IterableDataset</span><span class="p">):</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSDataset</span><span class="p">(</span><span class="n">IterableDataset</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;An iter style dataset built from a gluonts dataset</span>
 
 <span class="sd">    ```python</span>
@@ -1337,7 +1337,9 @@
 <span class="normal">52</span>
 <span class="normal">53</span>
 <span class="normal">54</span>
-<span class="normal">55</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSTransformsDefault</span><span class="p">(</span><span class="n">Transformation</span><span class="p">):</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GluonTSTransformsDefault</span><span class="p">(</span><span class="n">Transformation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Default transforms of a gluonts dataset</span>
 
 <span class="sd">    ```python</span>
@@ -1355,7 +1357,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">context_length</span> <span class="o">=</span> <span class="n">context_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">prediction_length</span> <span class="o">=</span> <span class="n">prediction_length</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]):</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_it</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="n">is_train</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="n">mask_unobserved</span> <span class="o">=</span> <span class="n">AddObservedValuesIndicator</span><span class="p">(</span>
             <span class="n">target_field</span><span class="o">=</span><span class="n">FieldName</span><span class="o">.</span><span class="n">TARGET</span><span class="p">,</span>
             <span class="n">output_field</span><span class="o">=</span><span class="n">FieldName</span><span class="o">.</span><span class="n">OBSERVED_VALUES</span><span class="p">,</span>
@@ -1375,7 +1377,9 @@
             <span class="n">time_series_fields</span><span class="o">=</span><span class="p">[</span><span class="n">FieldName</span><span class="o">.</span><span class="n">OBSERVED_VALUES</span><span class="p">],</span>
         <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">mask_unobserved</span> <span class="o">+</span> <span class="n">training_splitter</span>
+        <span class="n">transforms</span> <span class="o">=</span> <span class="n">mask_unobserved</span> <span class="o">+</span> <span class="n">training_splitter</span>
+
+        <span class="k">return</span> <span class="n">transforms</span><span class="p">(</span><span class="n">data_it</span><span class="o">=</span><span class="n">data_it</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="n">is_train</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
         </details>
 
