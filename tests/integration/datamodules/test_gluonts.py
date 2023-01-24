@@ -1,5 +1,6 @@
 import pickle
 
+import numpy as np
 import pytest
 import torch
 from gluonts.dataset.common import load_datasets
@@ -9,7 +10,18 @@ from ts_bolt.datamodules.gluonts import (
     GluonTSDataLoaderConfig,
     GluonTSDataModule,
     GluonTSDataset,
+    GluonTSTransformsDefault,
 )
+
+
+@pytest.fixture
+def context_length():
+    return 10
+
+
+@pytest.fixture
+def prediction_length():
+    return 3
 
 
 @pytest.fixture
@@ -24,6 +36,13 @@ def gluonts_datasets(integration_test_dir):
 def gluonts_dataloader_config():
     return GluonTSDataLoaderConfig(
         **{"batch_size": 2, "transform": None, "collate_fn": batchify}
+    )
+
+
+@pytest.fixture
+def gluonts_transform(context_length, prediction_length):
+    return GluonTSTransformsDefault(
+        context_length=context_length, prediction_length=prediction_length
     )
 
 
@@ -49,6 +68,38 @@ def test_gluonts_datasets(gluonts_datasets, datamodules_artefacts_dir):
     for i in range(len(g_ds_train_expected)):
         for k in g_ds_train_expected[i]:
             g_ds_train_expected[i][k] == list(g_ds_train)[i][k]
+
+
+def test_gluonts_datasets_with_transform(
+    gluonts_datasets, gluonts_transform, datamodules_artefacts_dir
+):
+
+    is_regenerate_artefact = False
+
+    expected_dataset_path = (
+        datamodules_artefacts_dir
+        / "gluonts_dataset_with_transform_to_torch_dataset_expected.pkl"
+    )
+
+    np.random.seed(42)
+
+    g_ds_train = GluonTSDataset(
+        dataset=gluonts_datasets.train, is_train=True, transform=gluonts_transform
+    )
+    g_ds_train_values = list(g_ds_train)
+
+    if is_regenerate_artefact:
+        with open(expected_dataset_path, "wb+") as fp:
+            pickle.dump(g_ds_train_values, fp)
+
+    with open(expected_dataset_path, "rb") as fp:
+        g_ds_train_expected = pickle.load(fp)
+
+    assert len(g_ds_train_values) == len(g_ds_train_expected)
+
+    for i in range(len(g_ds_train_expected)):
+        for k in g_ds_train_expected[i]:
+            g_ds_train_expected[i][k] == g_ds_train_values[i][k]
 
 
 def test_gluonts_datamodule(

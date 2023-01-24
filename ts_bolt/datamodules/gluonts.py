@@ -32,7 +32,7 @@ class GluonTSTransformsDefault(Transformation):
         self.context_length = context_length
         self.prediction_length = prediction_length
 
-    def __call__(self, data_it: Iterable[Dict[str, Any]]):
+    def __call__(self, data_it: Iterable[Dict[str, Any]], is_train: bool):
         mask_unobserved = AddObservedValuesIndicator(
             target_field=FieldName.TARGET,
             output_field=FieldName.OBSERVED_VALUES,
@@ -52,7 +52,9 @@ class GluonTSTransformsDefault(Transformation):
             time_series_fields=[FieldName.OBSERVED_VALUES],
         )
 
-        return mask_unobserved + training_splitter
+        transforms = mask_unobserved + training_splitter
+
+        return transforms(data_it=data_it, is_train=is_train)
 
 
 class GluonTSDataset(IterableDataset):
