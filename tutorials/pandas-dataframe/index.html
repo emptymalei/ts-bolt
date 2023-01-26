@@ -12,27 +12,27 @@
         <meta name="author" content="L Ma">
       
       
-        <link rel="canonical" href="https://emptymalei.github.io/ts-bolt/tutorials/">
+        <link rel="canonical" href="https://emptymalei.github.io/ts-bolt/tutorials/pandas-dataframe/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../command-line/">
       
       
-        <link rel="next" href="command-line/">
+        <link rel="next" href="../../references/">
       
-      <link rel="icon" href="../assets/logo.png">
+      <link rel="icon" href="../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.5">
     
     
       
-        <title>Introduction - TS Bolt</title>
+        <title>Use Pandas DataFrame - TS Bolt</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.558e4712.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.558e4712.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.2505c338.min.css">
       
       
 
@@ -48,9 +48,9 @@
       
     
     
-      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tutorials" class="md-skip">
+        <a href="#pandas-dataframe-as-dataset" class="md-skip">
           Skip to content
         </a>
       
@@ -93,9 +93,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href=".." title="TS Bolt" class="md-header__button md-logo" aria-label="TS Bolt" data-md-component="logo">
+    <a href="../.." title="TS Bolt" class="md-header__button md-logo" aria-label="TS Bolt" data-md-component="logo">
       
-  <img src="../assets/logo_transparent.png" alt="logo">
+  <img src="../../assets/logo_transparent.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              Use Pandas DataFrame
             
           </span>
         </div>
@@ -206,7 +206,7 @@
 
 
   <li class="md-tabs__item">
-    <a href=".." class="md-tabs__link">
+    <a href="../.." class="md-tabs__link">
       Home
     </a>
   </li>
@@ -223,7 +223,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="./" class="md-tabs__link md-tabs__link--active">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
         Tutorials
       </a>
     </li>
@@ -239,7 +239,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../references/" class="md-tabs__link">
+      <a href="../../references/" class="md-tabs__link">
         References
       </a>
     </li>
@@ -267,9 +267,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="TS Bolt" class="md-nav__button md-logo" aria-label="TS Bolt" data-md-component="logo">
+    <a href="../.." title="TS Bolt" class="md-nav__button md-logo" aria-label="TS Bolt" data-md-component="logo">
       
-  <img src="../assets/logo_transparent.png" alt="logo">
+  <img src="../../assets/logo_transparent.png" alt="logo">
 
     </a>
     TS Bolt
@@ -297,7 +297,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         Home
       </a>
     </li>
@@ -339,21 +339,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
         Introduction
       </a>
-      
     </li>
   
 
@@ -365,7 +355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="command-line/" class="md-nav__link">
+      <a href="../command-line/" class="md-nav__link">
         Command Line Tool
       </a>
     </li>
@@ -377,11 +367,66 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="pandas-dataframe/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Use Pandas DataFrame
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Use Pandas DataFrame
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ts_boltdatamodulespandasdataframedataset" class="md-nav__link">
+    ts_bolt.datamodules.pandas.DataFrameDataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-gluonts-pandasdataset" class="md-nav__link">
+    Using GluonTS PandasDataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataloader" class="md-nav__link">
+    DataLoader
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -428,7 +473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../references/" class="md-nav__link">
+      <a href="../../references/" class="md-nav__link">
         Introduction
       </a>
     </li>
@@ -471,7 +516,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../references/datamodules/gluonts/" class="md-nav__link">
+      <a href="../../references/datamodules/gluonts/" class="md-nav__link">
         GluonTS
       </a>
     </li>
@@ -492,7 +537,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../changelog/" class="md-nav__link">
+      <a href="../../changelog/" class="md-nav__link">
         Changelog
       </a>
     </li>
@@ -526,6 +571,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ts_boltdatamodulespandasdataframedataset" class="md-nav__link">
+    ts_bolt.datamodules.pandas.DataFrameDataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-gluonts-pandasdataset" class="md-nav__link">
+    Using GluonTS PandasDataset
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataloader" class="md-nav__link">
+    DataLoader
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -543,8 +617,56 @@
 
 
 
-<h1 id="tutorials">Tutorials<a class="headerlink" href="#tutorials" title="Permanent link">¤</a></h1>
-<p>Tutorials for <code>ts_bolt</code>.</p>
+<h1 id="pandas-dataframe-as-dataset">Pandas DataFrame as Dataset<a class="headerlink" href="#pandas-dataframe-as-dataset" title="Permanent link">¤</a></h1>
+<p>In this tutorial, we show a few examples using pandas dataframe as dataset.</p>
+<h2 id="ts_boltdatamodulespandasdataframedataset"><code>ts_bolt.datamodules.pandas.DataFrameDataset</code><a class="headerlink" href="#ts_boltdatamodulespandasdataframedataset" title="Permanent link">¤</a></h2>
+<p><code>ts_bolt.datamodules.pandas.DataFrameDataset</code> takes a pandas dataframe and converts it to a PyTorch dataset.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">ts_bolt.datamodules.pandas</span> <span class="kn">import</span> <span class="n">DataFrameDataset</span>
+
+<span class="n">dates</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">date_range</span><span class="p">(</span><span class="s2">&quot;2021-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2021-04-01&quot;</span><span class="p">,</span> <span class="n">freq</span><span class="o">=</span><span class="s2">&quot;D&quot;</span><span class="p">)</span>
+
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+        <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)),</span>
+        <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">df_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">dates</span><span class="p">,</span>
+        <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)),</span>
+        <span class="s2">&quot;item_id&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">dates</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+
+<span class="n">df_long</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">])</span>
+
+<span class="n">df_wide</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">df_long</span>
+    <span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s2">&quot;date&quot;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s2">&quot;item_id&quot;</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">)</span>
+<span class="p">)</span>
+</code></pre></div>
+<p>With this wide dataframe, we can construct a PyTorch dataset</p>
+<div class="highlight"><pre><span></span><code><span class="n">dfds</span> <span class="o">=</span> <span class="n">DataFrameDataset</span><span class="p">(</span><span class="n">dataframe</span><span class="o">=</span><span class="n">df_wide</span><span class="p">,</span> <span class="n">context_length</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">horizon</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dfds</span><span class="p">))</span>
+</code></pre></div>
+<h2 id="using-gluonts-pandasdataset">Using GluonTS PandasDataset<a class="headerlink" href="#using-gluonts-pandasdataset" title="Permanent link">¤</a></h2>
+<p><code>ts_bolt.datamodules.gluonts</code> provides a generic connection between gluonts datasets and pytorch dataloader.</p>
+<div class="highlight"><pre><span></span><code><span class="n">gluonts_pds</span> <span class="o">=</span> <span class="n">PandasDataset</span><span class="o">.</span><span class="n">from_long_dataframe</span><span class="p">(</span>
+    <span class="n">pandas_dataframe</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;target&quot;</span><span class="p">,</span> <span class="n">item_id</span><span class="o">=</span><span class="s2">&quot;item_id&quot;</span>
+<span class="p">)</span>
+
+<span class="n">ds</span> <span class="o">=</span> <span class="n">GluonTSDataset</span><span class="p">(</span><span class="n">dataset</span><span class="o">=</span><span class="n">gluonts_pds</span><span class="p">,</span> <span class="n">is_train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">gluonts_transform</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="dataloader">DataLoader<a class="headerlink" href="#dataloader" title="Permanent link">¤</a></h2>
+<p>Once we obtained the dataset, a dataloader can be constructed the PyTorch way.</p>
+<div class="highlight"><pre><span></span><code><span class="n">dl</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">ds</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">collate_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">data</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+<span class="nb">next</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="n">dl</span><span class="p">))</span>
+</code></pre></div>
 
 
 
@@ -582,12 +704,12 @@
       <div class="md-dialog__inner md-typeset"></div>
     </div>
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "navigation.tabs"], "search": "../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.sections", "navigation.tabs"], "search": "../../assets/javascripts/workers/search.e5c33ebb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.51d95adb.min.js"></script>
+      <script src="../../assets/javascripts/bundle.51d95adb.min.js"></script>
       
-        <script src="../javascripts/mathjax.js"></script>
+        <script src="../../javascripts/mathjax.js"></script>
       
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
       

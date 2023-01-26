@@ -30,4 +30,9 @@
          <lastmod>2023-01-26</lastmod>
          <changefreq>daily</changefreq>
     </url>
+    <url>
+         <loc>https://emptymalei.github.io/ts-bolt/tutorials/pandas-dataframe/</loc>
+         <lastmod>2023-01-26</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
 </urlset>
