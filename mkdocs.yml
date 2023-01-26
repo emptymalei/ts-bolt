@@ -78,6 +78,7 @@ nav:
   - "Tutorials":
     - "Introduction": tutorials/index.md
     - "Command Line Tool": tutorials/command-line.md
+    - "Use Pandas DataFrame": tutorials/pandas-dataframe.md
   - References:
     - "Introduction": references/index.md
     - "Data Generators":
