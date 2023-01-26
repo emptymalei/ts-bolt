@@ -1,7 +1,10 @@
 import pytest
 from gluonts.torch.batchify import batchify
 
-from ts_bolt.datamodules.gluonts import GluonTSDataLoaderConfig, GluonTSDataset
+from ts_bolt.datamodules.gluonts import (
+    GluonTSDataLoaderConfig,
+    GluonTSTransformsDefault,
+)
 
 
 @pytest.fixture
