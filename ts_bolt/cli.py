@@ -8,7 +8,7 @@ from ts_bolt.datasets.collections import DownloaderDataset, RawFileDataset
 from ts_bolt.datasets.collections import collections as dataset_collections
 
 
-def download_binary_request(dataset: RawFileDataset, local_file: Path):
+def download_binary_request(dataset: RawFileDataset, local_file: Path) -> None:
     """Download remote content in a binary format
 
     :param dataset: a RawFileDataset definition
@@ -26,7 +26,7 @@ def download_binary_request(dataset: RawFileDataset, local_file: Path):
 
 @click.group(invoke_without_command=True)
 @click.pass_context
-def bolt(ctx):
+def bolt(ctx) -> None:  # type: ignore[no-untyped-def]
     if ctx.invoked_subcommand is None:
         click.echo("Use bolt --help for help.")
     else:
@@ -37,12 +37,14 @@ def bolt(ctx):
 @click.option(
     "--name",
     default=None,
-    type=click.Choice(dataset_collections.keys()),
+    type=click.Choice(list(dataset_collections.keys())),  # type: ignore[has-type]
     help="name of dataset to be check",
     required=False,
 )
-def list(name):
-
+def list(name: str) -> None:
+    """
+    :param name: name of datasets to list
+    """
     if name is None:
         click.echo_via_pager("\n".join(f"{d}" for d in dataset_collections))
     else:
@@ -63,12 +65,11 @@ def list(name):
     help="where to save the dataset",
     required=True,
 )
-def download(name, target):
-
+def download(name: str, target: Path) -> None:
     dataset = dataset_collections[name]
     if not target.exists():
         target.mkdir(parents=True, exist_ok=False)
-    local_file = target / dataset.file_name
+    local_file = target / dataset.file_name  # type: ignore[attr-defined]
 
     if local_file.exists():
         logger.warning(
