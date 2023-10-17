@@ -17,6 +17,7 @@ pydantic = ">=1.10.4,<2.0"
 requests = "^2.28.2"
 lightning = "^2.1.0"
 pandas = "^2.1.1"
+scipy = "^1.11.3"
 
 [tool.poetry.group.docs.dependencies]
 mkdocs-material = "^9.0.5"
