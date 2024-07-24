@@ -62,10 +62,10 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          selection:
+          options:
             docstring_style: sphinx
-      watch:
-        - docs
+            filters:
+
 
 
 extra_javascript:
@@ -81,6 +81,17 @@ nav:
     - "Use Pandas DataFrame": tutorials/pandas-dataframe.md
   - References:
     - "Introduction": references/index.md
-    - "Data Generators":
+    - "Data Modules":
         - "GluonTS": references/datamodules/gluonts.md
+        - "Pandas": references/datamodules/pandas.md
+    - "Datasets":
+        - "Collections": references/datasets/collections.md
+        - "Downloaders":
+          - "Base": references/datasets/downloaders/base.md
+          - "Exchange Rate": references/datasets/downloaders/ecb_exchange_rate.md
+    - "Evaluation":
+        - "Evaluator": references/evaluation/evaluator.md
+    - "Naive Forecaster":
+        - "Last Observation": references/naive_forecasters/last_observation.md
+    - "CLI": references/cli.md
     - "Changelog": changelog.md
