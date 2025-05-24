@@ -2,72 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/changelog/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/cli/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datamodules/gluonts/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datamodules/pandas/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datasets/collections/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datasets/downloaders/base/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/datasets/downloaders/ecb_exchange_rate/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/evaluation/evaluator/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/references/naive_forecasters/last_observation/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/tutorials/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/tutorials/command-line/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
     <url>
          <loc>https://emptymalei.github.io/ts-bolt/tutorials/pandas-dataframe/</loc>
-         <lastmod>2024-07-25</lastmod>
-         <changefreq>daily</changefreq>
+         <lastmod>2025-05-24</lastmod>
     </url>
 </urlset>
