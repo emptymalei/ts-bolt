@@ -44,7 +44,7 @@ class Evaluator:
 
     @staticmethod
     def get_y_true(dataloader: DataLoader, step: int) -> list[torch.Tensor]:
-        return [i[1].squeeze(-1)[..., step] for i in dataloader]
+        return [i[1][..., step] for i in dataloader]
 
     def y_true(self, dataloader: DataLoader, batch_idx: int = 0) -> torch.Tensor:
         return self.get_y_true(dataloader, step=self.step)[batch_idx].detach()
